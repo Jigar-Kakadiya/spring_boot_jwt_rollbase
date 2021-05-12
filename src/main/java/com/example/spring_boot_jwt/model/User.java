@@ -12,7 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,14 +28,17 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
+
+
     private String email;
+
     private String password;
-   // private String role;
-   @ManyToMany(fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
-   @JoinTable(	name = "user_roles",
-           joinColumns = @JoinColumn(name = "id"),
-           inverseJoinColumns = @JoinColumn(name = "role_id"))
-   private Set<Role> roles = new HashSet<>();
+    // private String role;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
 
 }

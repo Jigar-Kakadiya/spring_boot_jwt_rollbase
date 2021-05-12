@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
 
@@ -50,7 +51,7 @@ public class UserController {
 
     // register user
     @PostMapping("/register")
-    public ResponseEntity<Object> register(@RequestBody SignUpRequest signUpRequest) {
+    public ResponseEntity<Object> register(@Valid @RequestBody SignUpRequest signUpRequest ) {
         return userService.save(signUpRequest);
     }
 
@@ -78,7 +79,7 @@ public class UserController {
     private String user() {
         return "hellouser";
     }
-    
+
     // for testing purpose
     @GetMapping("/helloadmin")
     private String admin() {
